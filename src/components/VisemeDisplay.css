@@ -78,12 +78,13 @@
     transform: scaleX(0.95) translateY(-2%);
 }
 
+/* Base viseme styling - this will be consistent across all devices */
 .viseme-image.cartoon-viseme {
     position: absolute;
     top: 47%;
     left: 49%;
     transform: translate(-50%, -50%);
-    width:20%; /* Smaller base width that works well across all devices */
+    width: 25%; /* Increased to 25% */
     height: auto;
     z-index: 2;
 }
@@ -133,7 +134,7 @@
 
 /* Override any inherited or conflicting styles */
 .viseme-image.cartoon-viseme {
-    width: 15% !important; /* Force consistent size */
+    width: 18% !important; /* Force consistent size - increased to 25% */
 }
 
 /* Cheek compression animation */
@@ -595,7 +596,7 @@ video.avatar-base {
     }
 
     .viseme-image.cartoon-viseme {
-        width: 30%; /* Even larger mouth for very small screens */
+        width: 35%; /* Even larger mouth for very small screens */
     }
 }
 
