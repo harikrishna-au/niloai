@@ -1,0 +1,624 @@
+.faces-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* VisemeDisplay.css */
+
+@keyframes wobbleFollow {
+    0% { transform: translate(-50%, -50%); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes mouthMovement {
+    0% { transform: translate(-50%, -50%); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+.face-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Desktop default */
+    aspect-ratio: 1; /* Maintain square ratio */
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.face-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Split the avatar into regions */
+.face-region {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.upper-face {
+    top: 0;
+    height: 40%;
+    clip-path: polygon(25% 0%, 75% 0%, 75% 100%, 25% 100%);
+}
+
+.lower-face {
+    top: 40%;
+    height: 30%;
+    clip-path: polygon(30% 0%, 70% 0%, 75% 100%, 25% 100%);
+    transition: transform 0.3s ease;
+}
+
+/* Base avatar image */
+.avatar-base {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+}
+
+/* Compressed state for lower face only */
+.viseme-compressed .lower-face {
+    transform: scaleX(0.95) translateY(-2%);
+}
+
+.viseme-image.cartoon-viseme {
+    position: absolute;
+    top: 47%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    width:20%; /* Smaller base width that works well across all devices */
+    height: auto;
+    z-index: 2;
+}
+
+/* Container adjustments only */
+@media screen and (max-width: 1024px) {
+    .face-container {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .face-container {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .face-container {
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .face-container {
+        max-width: 90vw;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .face-container {
+        max-width: 50vh;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .face-container {
+        max-width: 250px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .face-container {
+        max-width: 700px;
+    }
+}
+
+/* Override any inherited or conflicting styles */
+.viseme-image.cartoon-viseme {
+    width: 15% !important; /* Force consistent size */
+}
+
+/* Cheek compression animation */
+@keyframes cheekCompress {
+    0% { transform: scaleX(1) translateY(0); }
+    50% { transform: scaleX(0.95) translateY(-2%); }
+    100% { transform: scaleX(1) translateY(0); }
+}
+
+.cheek-animation {
+    animation: cheekCompress 0.3s ease-in-out;
+}
+
+/* Remove any animation classes */
+.cartoon-viseme.animate {
+    animation: none;
+}
+
+/* Remove any wobble or mouth movement animations */
+@keyframes wobbleFollow {
+    0% { transform: translate(-50%, -50%); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes mouthMovement {
+    0% { transform: translate(-50%, -50%); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+/* Optional: Add a class for when the video is actively playing */
+.video-playing .cartoon-viseme {
+    animation: mouthMovement 4s linear infinite;
+}
+
+/* Optional: Add a class for when the video is paused */
+.video-paused .cartoon-viseme {
+    animation-play-state: paused;
+}
+
+/* Optional: Add alignment grid for development */
+.avatar-wrapper {
+    position: relative;
+    display: inline-block;
+    
+    /* Uncomment during development to show alignment grid */
+    /*
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
+        z-index: 1;
+    }
+    */
+}
+
+/* Debugging tools - add these classes as needed */
+.show-alignment-guides .cartoon-viseme {
+    outline: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.show-reference-points .cartoon-viseme::before,
+.show-reference-points .cartoon-viseme::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: blue;
+    top: 50%;
+    left: 50%;
+}
+
+
+/* Hover effects */
+.face-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.7;
+}
+
+/* Responsive design */
+@media (min-width: 1024px) {
+    .faces-container {
+        padding: 20px;
+        gap: 40px;
+    }
+
+    .face-container {
+        min-width: 600px; /* Minimum width for larger screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .faces-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .face-container {
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 30px;
+    }
+
+    .face-container h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add these classes to your avatar image to split it into regions */
+.face-region {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.upper-face {
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
+}
+
+.lower-face {
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.speaking {
+    animation: pulse 1s infinite ease-in-out;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.error-message {
+    color: #dc3545;
+    text-align: center;
+    padding: 10px;
+}
+
+.avatar-base.playing {
+    opacity: 1;
+}
+
+.avatar-base:not(.playing) {
+    opacity: 0.95;
+}
+
+video.avatar-base {
+    transition: opacity 0.3s ease;
+}
+
+/* Add these new styles to your existing CSS */
+
+.position-controls {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.controls-row {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.position-button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.position-button:hover {
+    background: #f0f0f0;
+    transform: scale(1.1);
+}
+
+.position-button:active {
+    background: #e0e0e0;
+    transform: scale(0.95);
+}
+
+.reset-button {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.reset-button:hover {
+    background: #ff6b81;
+}
+
+.position-value {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.viseme-image {
+    position: absolute;
+    left: 50%;
+    transform: translate(calc(-50% + var(--offset-x, 0px)), 
+                        calc(-50% + var(--offset-y, 0px)));
+    transition: all 0.1s ease-in-out;
+}
+
+.viseme-image.cartoon-viseme {
+    position: absolute;
+    top: 47%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    width: 20%; /* Base width for desktop */
+    height: auto;
+    z-index: 2;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+    .face-container {
+        max-width: 500px;
+    }
+
+    .viseme-image.cartoon-viseme {
+        width: 22%; /* Slightly larger for medium screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .face-container {
+        max-width: 400px;
+    }
+
+    .viseme-image.cartoon-viseme {
+        width: 25%; /* Larger for tablets */
+        top: 47%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .face-container {
+        max-width: 300px;
+    }
+
+    .viseme-image.cartoon-viseme {
+        width: 28%; /* Even larger for mobile */
+        top: 47%;
+    }
+}
+
+/* Portrait orientation specific adjustments */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .face-container {
+        max-width: 90vw;
+    }
+
+    .viseme-image.cartoon-viseme {
+        width: 25%;
+    }
+}
+
+/* Landscape orientation specific adjustments */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .face-container {
+        max-width: 50vh;
+    }
+
+    .viseme-image.cartoon-viseme {
+        width: 22%;
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 320px) {
+    .face-container {
+        max-width: 250px;
+    }
+
+    .viseme-image.cartoon-viseme {
+        width: 30%;
+    }
+}
+
+/* For larger screens */
+@media screen and (min-width: 1440px) {
+    .face-container {
+        max-width: 700px;
+    }
+
+    .viseme-image.cartoon-viseme {
+        width: 18%; /* Slightly smaller proportion for larger screens */
+    }
+}
+
+/* Add compression for specific visemes */
+.viseme-compressed .avatar-base {
+    transform: scaleX(0.95);
+}
+
+.viseme-compressed .cartoon-viseme {
+    transform: translate(-50%, -50%) scaleX(1.1);
+}
+
+/* Add cheek compression animation */
+@keyframes cheekCompress {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(0.95); }
+    100% { transform: scaleX(1); }
+}
+
+.cheek-animation {
+    animation: cheekCompress 0.3s ease-in-out;
+}
+
+.cheek-left, .cheek-right {
+    position: absolute;
+    height: 30%;
+    width: 20%;
+    top: 45%;
+    transition: transform 0.2s ease-out;
+}
+
+.cheek-left {
+    left: 25%;
+    transform-origin: right center;
+}
+
+.cheek-right {
+    right: 25%;
+    transform-origin: left center;
+}
+
+.viseme-compressed .cheek-left {
+    transform: translateX(10%) scaleX(0.9);
+}
+
+.viseme-compressed .cheek-right {
+    transform: translateX(-10%) scaleX(0.9);
+}
+
+.mouth-area {
+    position: absolute;
+    width: 30%;
+    height: 20%;
+    left: 35%;
+    top: 45%;
+    transform-origin: center;
+    transition: all 0.2s ease-out;
+}
+
+.viseme-compressed .mouth-area {
+    transform: scaleX(1.1) scaleY(0.95);
+}
+
+/* Animation for lip pulling */
+@keyframes lipPull {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(1.1); }
+    100% { transform: scaleX(1); }
+}
+
+.lip-animation {
+    animation: lipPull 0.3s ease-in-out;
+}
+
+.blink-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+    object-fit: contain;
+}
+
+.blink-overlay.show {
+    opacity: 1;
+}
+
+.blink-overlay.hide {
+    opacity: 0;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-base {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .face-container {
+        max-width: 100%; /* Full width on mobile */
+        aspect-ratio: 1; /* Keep square ratio */
+    }
+
+    .viseme-image.cartoon-viseme {
+        width: 25%; /* Slightly larger mouth on mobile */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .faces-container {
+        padding: 5px;
+    }
+
+    .face-container {
+        border-radius: 10px;
+    }
+
+    .viseme-image.cartoon-viseme {
+        width: 30%; /* Even larger mouth for very small screens */
+    }
+}
+
+/* Portrait orientation specific adjustments */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .face-container {
+        max-width: 90vw;
+        height: auto;
+    }
+}
+
+/* Landscape orientation specific adjustments */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .face-container {
+        max-width: 50vh;
+        height: auto;
+    }
+}
+
+/* Prevent overflow issues */
+* {
+    box-sizing: border-box;
+}
+
+
+
