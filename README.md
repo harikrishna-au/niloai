@@ -1,30 +1,64 @@
+# 🤖 Nilo AI – Human-like AI Avatar Platform
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+![Built With](https://img.shields.io/badge/Built%20with-React%2C%20Node%2C%20Gemini-blue)
 
-https://github.com/user-attachments/assets/825a3981-404b-4ada-b55d-30c81cad8d0e
+> Your smart AI avatar – multilingual, real-time, and always ready to talk.
 
+---
 
+## 🌐 About the Project
 
-https://github.com/user-attachments/assets/dc49ec4f-4217-4131-ae52-421d83c0d6ea
+**Nilo AI** is a real-time, multilingual avatar platform that brings **human-like conversations** to life using voice and text. Whether it’s customer support, virtual onboarding, or smart education, Nilo AI offers 24/7 intelligent, emotionally-aware interactions that reduce costs and boost productivity.
 
+---
 
+## 🚀 Live Demo
 
-https://github.com/user-attachments/assets/2c403866-93e1-44d2-83f5-67aecb3c95df
+🔗 [Watch the Live Demo](https://niloai.onrender.com/)  
+🎤 Try voice input, see lip-sync animation, and experience real-time AI response!
 
+---
 
+## 🧠 Features
 
-https://github.com/user-attachments/assets/cfc28af6-d656-42d4-886f-5abcdf0f9eed
+- 🎙️ Voice & Text Input
+- 🌍 Multilingual Support
+- 👄 Lip-Synced Avatar Animations
+- 🧠 Contextual & Emotion-aware Responses
+- 🔌 Task Execution via APIs
+- 🧱 Modular & Scalable Architecture
 
+---
 
-https://drive.google.com/drive/folders/1S8g97H4faElsUgu6fukaD7Zlm0WXdMX3?usp=sharing
+## 🛠️ Tech Stack
 
-https://github.com/user-attachments/assets/391d6fd2-0ffe-4d39-83b6-d84da3485043
+**Frontend**
+- React.js
+- Viseme JS for lip animations
+- Canva, Photoshop, Ezgif for avatar modeling
 
+**Backend**
+- Node.js
+- Google Gemini API (LLM)
+- Microsoft Cognitive Services Speech SDK
+- Web Speech API
 
+**AI Models**
+| Feature            | Tool/Model                    |
+|--------------------|-------------------------------|
+| Text Generation    | `gemini-2.0-flash`            |
+| Lip Sync Animation | Google TTS + Viseme Mapping  |
+| Voice Recognition  | Web Speech API, MS SDK       |
+| Emotion Detection  | Custom JS-based Engine       |
 
-https://github.com/user-attachments/assets/1e063c4d-8ccc-41c7-a3e4-668576655604
+---
 
+## 📦 Installation
 
+Clone the repository:
 
-https://github.com/user-attachments/assets/b1cdfb07-44a5-4912-bb54-3ed27018790e
-
-
+```bash
+git clone https://github.com/your-username/nilo-ai.git
+cd nilo-ai
