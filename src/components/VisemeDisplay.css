@@ -134,7 +134,7 @@
 
 /* Override any inherited or conflicting styles */
 .viseme-image.cartoon-viseme {
-    width: 18% !important; /* Force consistent size - increased to 25% */
+    width: 15% !important; /* Force consistent size - increased to 25% */
 }
 
 /* Cheek compression animation */

@@ -33,8 +33,8 @@ function App() {
             const response = await genAI.models.generateContent({
                 model: "gemini-2.0-flash",
                 contents: `${userText} 
-                    Please provide a response in exactly 2 lines.
-                    Keep it brief and concise.`
+                            Please provide a response in exactly 2 lines.
+        Keep it brief and concise. You are NILO, an avatar designed to provide real-time lip-sync responses, overcoming delays and enhancing the user experience with multilingual support and 24/7 availability.`
             });
 
             // Extract only the first two lines if response is longer
